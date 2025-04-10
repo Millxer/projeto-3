@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Login </title>
+        <link rel="stylesheet" href="./Styles/Home.css">
+        <script src="Home.js"></script>
+    </head>
+<body class="HalfOne">
+    <div class="FirstHalf">
+        <p class="Voltar"> <img src="Assets/IconArrow.png" class="Arrow"> Voltar</p>
+        <h1 class="Subscription"> Login de Usuário </h1>
+        <p class="SubSubscription"> Preencha os dados abaixo para entrar em sua conta do Programa Trilhas </p>
+        <form>
+            <label for="Usuário"> ID de usuário </label>
+            <input class ="Buttons" type="text" id="Usuário" name="Usuário" required>
+            <div class="error-message" style="display: none; color: var(--Semantic-Error); font-size: 0.875rem; margin-top: 4px;">Este campo é obrigatório</div>
+             
+            <label for="Senha"> Senha </label>
+            <input class ="Buttons" type="password" id="Senha" name="Senha" required>
+            <div class="error-message" style="display: none; color: var(--Semantic-Error); font-size: 0.875rem; margin-top: 4px;">Este campo é obrigatório</div>
+                <nav class="Headers">
+                    <div class="Cadastro">
+                        <p> Não tem conta? </p>
+                        <p> <strong>Cadastre-se</strong> aqui </p>
+                    </div>
+                    <a type="button" class="Cancel" href="Home.html"> Cadastre-se </a> 
+                    <a type="submit" class="Inscrição"> Entrar </a>
+                </nav>
+        </form>
+    </div>
+  <script src="Home.js"></script>
+</body>
+
+<body class="HalfTwo" scroll="no" style="overflow: hidden"> 
+    <div class="SecondHalf">
+        <image src="Assets/image.png" alt="Pobre Sentado" class="PobreSentado">
+        <image src="Assets/image1.png" alt="Logo" class="Logo">
+    </div>
+</body>
+</html>
