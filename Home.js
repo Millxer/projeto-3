@@ -516,26 +516,22 @@ document.addEventListener('DOMContentLoaded', function() {
       console.log('Form data auto-saved:', formData);
 }})
 
-// Show success message and redirect after a delay
 function showSuccessMessage() {
   const successMessage = document.getElementById('success-message');
   if (successMessage) {
     successMessage.style.display = 'block';
     
-    // Redirect to login.html after 3 seconds
     setTimeout(() => {
       window.location.href = 'login.html';
     }, 3000);
   } else {
     console.error('Success message element not found');
-    // Fallback: redirect anyway
     setTimeout(() => {
       window.location.href = 'login.html';
     }, 3000);
   }
 }
 
-// Hide success message and redirect immediately
 function hideSuccessMessage() {
   const successMessage = document.getElementById('success-message');
   if (successMessage) {
@@ -544,16 +540,13 @@ function hideSuccessMessage() {
     setTimeout(() => {
       successMessage.style.display = 'none';
       successMessage.style.animation = '';
-      // Redirect to login.html immediately
       window.location.href = 'login.html';
     }, 500);
   } else {
-    // Fallback: redirect anyway
     window.location.href = 'login.html';
   }
 }
 
-// Modify the form submission handler
 document.addEventListener('DOMContentLoaded', function() {
   const form = document.querySelector('form');
   
@@ -628,19 +621,16 @@ document.addEventListener('DOMContentLoaded', function() {
       });
   
       if (isValid) {
-        // Show success message instead of submitting the form
         showSuccessMessage();
       }
     });
   }
   
-  // Add click event to the "Fazer Inscrição" button if it exists but is not a submit button
   const inscricaoButton = document.querySelector('.Inscrição');
   if (inscricaoButton && inscricaoButton.tagName === 'A') {
     inscricaoButton.addEventListener('click', function(e) {
       e.preventDefault();
       
-      // Trigger the form submission
       const form = document.querySelector('form');
       if (form) {
         const submitEvent = new Event('submit', {
