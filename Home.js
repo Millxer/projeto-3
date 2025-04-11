@@ -642,3 +642,126 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+
+function isAtLeast15YearsOld(birthdate) {
+  const today = new Date();
+  const birthDate = new Date(birthdate);
+  
+  let age = today.getFullYear() - birthDate.getFullYear();
+  const monthDiff = today.getMonth() - birthDate.getMonth();
+  
+  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+  }
+  
+  return age >= 15;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const dobInput = document.getElementById('Nasc');
+  
+  if (dobInput) {
+      dobInput.addEventListener('change', function() {
+          const errorDiv = this.nextElementSibling;
+          
+          if (this.value && !isAtLeast15YearsOld(this.value)) {
+              this.style.border = '1px solid var(--Semantic-Error)';
+              this.style.boxShadow = '0.5px -0.10px 3px 2px rgba(220, 38, 38, 0.1)';
+              
+              if (errorDiv && errorDiv.classList.contains('error-message')) {
+                  errorDiv.style.display = 'block';
+                  errorDiv.textContent = 'Você deve ter pelo menos 15 anos para se inscrever';
+              } else {
+                  const msg = document.createElement('div');
+                  msg.className = 'error-message';
+                  msg.style.color = 'var(--Semantic-Error)';
+                  msg.style.fontSize = '0.875rem';
+                  msg.style.marginTop = '4px';
+                  msg.textContent = 'Você deve ter pelo menos 15 anos para se inscrever';
+                  this.parentNode.insertBefore(msg, this.nextSibling);
+              }
+          } else if (this.value) {
+              this.style.border = '1px solid var(--Stroke-Default)';
+              this.style.boxShadow = 'none';
+              
+              if (errorDiv && errorDiv.classList.contains('error-message')) {
+                  errorDiv.style.display = 'none';
+              }
+          }
+      });
+  }
+});
+
+document.querySelector('form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const requiredInputs = document.querySelectorAll('input[required], select[required]');
+  let isValid = true;
+  
+  requiredInputs.forEach(input => {
+      const errorDiv = input.nextElementSibling;
+      
+      if (errorDiv && errorDiv.classList.contains('error-message')) {
+          errorDiv.style.display = 'none';
+      }
+      
+      if (!input.value.trim()) {
+          input.style.border = '1px solid var(--Semantic-Error)';
+          input.style.boxShadow = '0.5px -0.10px 3px 2px rgba(220, 38, 38, 0.1)';
+          
+          if (errorDiv && errorDiv.classList.contains('error-message')) {
+              errorDiv.style.display = 'block';
+              errorDiv.textContent = 'Este campo é obrigatório';
+          } else {
+              const msg = document.createElement('div');
+              msg.className = 'error-message';
+              msg.style.color = 'var(--Semantic-Error)';
+              msg.style.fontSize = '0.875rem';
+              msg.style.marginTop = '4px';
+              msg.textContent = 'Este campo é obrigatório';
+              input.parentNode.insertBefore(msg, input.nextSibling);
+          }
+          isValid = false;
+      } 
+      else if (input.type === 'email' && !isValidEmail(input.value)) {
+          input.style.border = '1px solid var(--Semantic-Error)';
+          input.style.boxShadow = '0.5px -0.10px 3px 2px rgba(220, 38, 38, 0.1)';
+          
+          if (errorDiv && errorDiv.classList.contains('error-message')) {
+              errorDiv.style.display = 'block';
+              errorDiv.textContent = 'Por favor, insira um email válido';
+          } else {
+              const msg = document.createElement('div');
+              msg.className = 'error-message';
+              msg.style.color = 'var(--Semantic-Error)';
+              msg.style.fontSize = '0.875rem';
+              msg.style.marginTop = '4px';
+              msg.textContent = 'Por favor, insira um email válido';
+              input.parentNode.insertBefore(msg, input.nextSibling);
+          }
+          isValid = false;
+      }
+      else if (input.id === 'Nasc' && !isAtLeast15YearsOld(input.value)) {
+          input.style.border = '1px solid var(--Semantic-Error)';
+          input.style.boxShadow = '0.5px -0.10px 3px 2px rgba(220, 38, 38, 0.1)';
+          
+          if (errorDiv && errorDiv.classList.contains('error-message')) {
+              errorDiv.style.display = 'block';
+              errorDiv.textContent = 'Você deve ter pelo menos 15 anos para se inscrever';
+          } else {
+              const msg = document.createElement('div');
+              msg.className = 'error-message';
+              msg.style.color = 'var(--Semantic-Error)';
+              msg.style.fontSize = '0.875rem';
+              msg.style.marginTop = '4px';
+              msg.textContent = 'Você deve ter pelo menos 15 anos para se inscrever';
+              input.parentNode.insertBefore(msg, input.nextSibling);
+          }
+          isValid = false;
+      }
+  });
+
+  if (isValid) {
+      this.submit();
+  }
+});
