@@ -209,16 +209,14 @@
               </script>
                 <div class="Headers">
                     <button type="button" class="Cancel"> Cancelar </button> 
-                    <button type="submit" class="Inscrição"> Fazer Inscrição </button>
+                    <button type="button" onclick="showMessageAndRedirect()" class="Inscrição"> Fazer Inscrição </button>
                 </div>
-                <div id="success-message" class="success-message-container" style="display: none;">
-                  <div class="success-message-box">
-                    <div class="success-icon"> ✓ </div>
-                    <h3>Inscrição realizada com sucesso!</h3>
-                    <p>Você será redirecionado para a página de login em instantes.</p>
-                    <button onclick="hideSuccessMessage()" class="close-button">Fechar</button>
-                  </div>
-                </div>
+                <script>
+                  function showMessageAndRedirect() {
+                  alert("Inscrição bem-sucedida! Redirecionando para a página de login.");
+                  window.location.href = "login.html";
+                  }
+                </script>
         </form>
     </div>
   <script src="Home.js"></script>
