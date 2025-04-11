@@ -21,6 +21,17 @@
 
             <label for="Nasc"> Data de Nascimento </label>
             <input class ="Buttons" type="date" id="Nasc" name="Nasc" required>
+            <script>
+              document.addEventListener('DOMContentLoaded', function() {
+                  const nascInput = document.getElementById('Nasc');
+                  if (nascInput) {
+                      const today = new Date();
+                      const fifteenYearsAgo = new Date(today.getFullYear() - 15, today.getMonth(), today.getDate());
+                      const formattedDate = fifteenYearsAgo.toISOString().split('T')[0];
+                      nascInput.setAttribute('max', formattedDate);
+                  }
+              });
+           </script>
             <div class="error-message" style="display: none; color: var(--Semantic-Error); font-size: 0.875rem; margin-top: 4px;">Este campo é obrigatório</div>
 
             <label for="CPF"> CPF </label>
